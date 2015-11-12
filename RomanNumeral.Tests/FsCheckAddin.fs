@@ -5,11 +5,11 @@ open NUnit.Core.Extensibility
 open FsCheck.NUnit
 open FsCheck.NUnit.Addin
 
-[<NUnitAddin(Description = "FsCheck addin")>]
-type FsCheckAddin() =
-    interface IAddin with
-        override x.Install host =
-            let tcBuilder = new FsCheckTestCaseBuilder()
-            host.GetExtensionPoint("TestCaseBuilders").Install(tcBuilder)
-            true
-
+//[<NUnitAddin(Description = "FsCheck addin")>]
+//type FsCheckAddin() =
+//    interface IAddin with
+//        override x.Install host =
+//            let tcBuilder = new FsCheckTestCaseBuilder()
+//            host.GetExtensionPoint("TestCaseBuilders").Install(tcBuilder)
+//            true
+//

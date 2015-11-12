@@ -1,5 +1,6 @@
 ﻿module WhenConvertingToRoman
-
+ 
+    open ArabicToRoman
     open NUnit.Framework
     open FsCheck
     open FsCheck.NUnit
@@ -11,6 +12,7 @@
 
 
 //    Conversion Table
+//    0    - ""
 //    1    - I
 //    5    - V
 //    10   - X
@@ -21,4 +23,7 @@
 //    2499 - MMCDXCIX
 //    3949 - MMMCMXLIX
 
-    
+    [<TestCase(0, "")>]
+    [<TestCase(1, "I")>]
+    let ReturnsTheRomanStringRepresentation(arabic, expRoman) = 
+        test <@ arabic |> convertToRoman = expRoman @>
