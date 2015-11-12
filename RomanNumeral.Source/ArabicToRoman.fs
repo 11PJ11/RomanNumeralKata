@@ -7,3 +7,4 @@
     let convertToRoman arabic =
         match arabic with
         | 1 -> RomanNumeral [I]
+        | _ -> RomanNumeral [I; I]
