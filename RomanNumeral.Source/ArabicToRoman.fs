@@ -1,6 +1,6 @@
 ﻿module ArabicToRoman
 
-let convertToRoman arabic = 
-    match arabic with
+let convertToRoman =
+    function
     | 0 -> ""
     | _ -> "I"
