@@ -1,6 +1,9 @@
 ﻿module ArabicToRoman
 
-let convertToRoman =
-    function
-    | 0 -> ""
-    | _ -> "I"
+    type RomanDigit = I
+
+    type RomanNumeral = RomanNumeral of RomanDigit list
+
+    let convertToRoman arabic =
+        match arabic with
+        | 1 -> RomanNumeral [I]
