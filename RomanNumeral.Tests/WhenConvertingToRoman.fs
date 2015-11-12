@@ -32,3 +32,4 @@
     let Verify() =
         ReturnsTheRomanDigit(1, [I])
         ReturnsTheRomanDigit(2, [I;I])
+        ReturnsTheRomanDigit(3, [I;I;I])
