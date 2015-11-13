@@ -26,7 +26,7 @@
     
 
     let ReturnsTheRomanDigit(arabic, roman) = 
-        test <@ arabic |> convertToRoman = roman @>
+        test <@ arabic |> convertToRoman2 = roman @>
 
     [<Test>]
     let Verify() =
@@ -34,6 +34,7 @@
         ReturnsTheRomanDigit(1, "I")
         ReturnsTheRomanDigit(2, "II")
         ReturnsTheRomanDigit(3, "III")
+        ReturnsTheRomanDigit(4, "IV")
         ReturnsTheRomanDigit(5, "V")
         ReturnsTheRomanDigit(6, "VI")
         ReturnsTheRomanDigit(10, "X")
