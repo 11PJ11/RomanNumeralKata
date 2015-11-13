@@ -30,6 +30,7 @@
 
     [<Test>]
     let Verify() =
+        ReturnsTheRomanDigit(0, "")
         ReturnsTheRomanDigit(1, "I")
         ReturnsTheRomanDigit(2, "II")
         ReturnsTheRomanDigit(3, "III")
