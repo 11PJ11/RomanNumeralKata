@@ -1,13 +1,14 @@
 ﻿module ArabicToRoman
 
-    type RomanDigit = I
+    type RomanDigit = I | V
 
     type RomanNumeral = RomanNumeral of RomanDigit list
 
     let convertToRoman arabic =
-        let rec go x = 
-                    match x with
-                    | 1 -> [I]
-                    | _ -> I :: go (x - 1)
+        let rec recConversion arab = 
+            match arab with
+            | 1 -> [I]
+            | value when value < 5 -> I :: recConversion (arab - 1)
+            | _ -> [V]
 
-        RomanNumeral (go arabic)
+        RomanNumeral (recConversion arabic)
