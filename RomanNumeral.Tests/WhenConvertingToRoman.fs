@@ -26,11 +26,16 @@
     
 
     let ReturnsTheRomanDigit(arabic, roman) = 
-        test <@ arabic |> convertToRoman = RomanNumeral roman @>
+        test <@ arabic |> convertToRoman = roman @>
 
     [<Test>]
     let Verify() =
-        ReturnsTheRomanDigit(1, [I])
-        ReturnsTheRomanDigit(2, [I;I])
-        ReturnsTheRomanDigit(3, [I;I;I])
-        ReturnsTheRomanDigit(5, [V])
+        ReturnsTheRomanDigit(1, "I")
+        ReturnsTheRomanDigit(2, "II")
+        ReturnsTheRomanDigit(3, "III")
+        ReturnsTheRomanDigit(5, "V")
+        ReturnsTheRomanDigit(6, "VI")
+        ReturnsTheRomanDigit(10, "X")
+        ReturnsTheRomanDigit(15, "XV")
+        ReturnsTheRomanDigit(20, "XX")
+        ReturnsTheRomanDigit(37, "XXXVII")
