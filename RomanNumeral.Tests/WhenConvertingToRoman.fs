@@ -41,12 +41,15 @@
                              {power = Power(1); digit = Digit(9)};
                              {power = Power(0); digit = Digit(9)}]
     
-    [<TestCase(0, "I", "V")>]
-    [<TestCase(1, "X", "L")>]
-    [<TestCase(2, "C", "D")>]
-    [<TestCase(3, "M", "MMMMM")>]
-    let ReturnsTheSymbolsForAPowerOfTen (power, one, five) =
-        test <@ getSymbolsFor power = (one, five) @>
+    let WATHEVER = Digit(5)
+
+    [<TestCase(3, "M", "", "")>]
+    [<TestCase(2, "C", "D", "M")>]
+    [<TestCase(1, "X", "L", "C")>]
+    [<TestCase(0, "I", "V", "X")>]
+    let ReturnsTheSymbolsForAPowerOfTen (power, one, five, ten) =
+        let exp = { power = Power(power); digit = WATHEVER}
+        test <@ (getSymbolsBy exp) = (one, five, ten) @>
 
 
     let ReturnsTheRomanDigit(arabic, roman) = 
@@ -65,3 +68,5 @@
         ReturnsTheRomanDigit(15, "XV")
         ReturnsTheRomanDigit(20, "XX")
         ReturnsTheRomanDigit(37, "XXXVII")
+        ReturnsTheRomanDigit(2499, "MMCDXCIX")
+        ReturnsTheRomanDigit(3949, "MMMCMXLIX")

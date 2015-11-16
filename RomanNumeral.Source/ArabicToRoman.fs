@@ -20,28 +20,48 @@
     type ExpandedForm = { power : Power; digit : Digit }
     
     let expand (number:int) =
-        let biggest_power = 3
+        let BIGGEST_POWER_OF_TEN = 3
+
         let rec go num pow (expansion:ExpandedForm list) =
            
             let powerOfTen = (int)((float)10 ** (float)pow)
             let digit = (int)(num / powerOfTen)
             let remainder = num - (digit * powerOfTen)
             let current = { power = Power(pow); digit = Digit(digit) }
-            match pow with
-            | 0 -> expansion @ [current]
-            | _ -> if digit > 0 && digit < 10
+            if pow = 0
+            then expansion @ [current]
+            else if digit > 0 && digit < 10
                    then [current] @ (go (remainder) (pow - 1) (expansion))
                    else (go (remainder) (pow - 1) (expansion))
     
-        go number biggest_power []
+        go number BIGGEST_POWER_OF_TEN []
 
 
-    let getSymbolsFor power =
-        match power with
-        | 3 -> ("M" ,"MMMMM")
-        | 2 -> ("C" ,"D")
-        | 1 -> ("X" ,"L")
-        | _ -> ("I", "V")
+    let getSymbolsBy expanded =
+        match expanded.power with
+        | Power(3) -> ("M" ,"", "")
+        | Power(2) -> ("C" ,"D", "M")
+        | Power(1) -> ("X" ,"L", "C")
+        | Power(0) -> ("I", "V", "X")
+        | _ -> ("", "", "")
+
+    let fromDigitToRoman symbolsGetter expanded =
+        let (one, five, ten) = symbolsGetter expanded
+        match expanded.digit with
+        | Digit(1)  -> one
+        | Digit(2)  -> one + one
+        | Digit(3)  -> one + one + one
+        | Digit(4)  -> one + five
+        | Digit(5)  -> five
+        | Digit(6)  -> five + one
+        | Digit(7)  -> five + one + one
+        | Digit(8)  -> five + one + one + one
+        | Digit(9)  -> one + ten
+        | Digit(10) -> ten
+        | _ -> ""
 
     let convertToRoman arabic =
-        ""
+        let expansion = expand arabic
+        expansion
+        |> List.map (fun exp -> fromDigitToRoman getSymbolsBy exp) 
+        |> String.concat ""
