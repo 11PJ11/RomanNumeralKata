@@ -22,11 +22,27 @@
 //    1000 - M
 //    2499 - MMCDXCIX
 //    3949 - MMMCMXLIX
-
     
-
+    let VerifyExpansion number expansion =
+         test <@ expand number = expansion @>
+    
+    [<Test>]
+    let It_should_return_the_expanded_form_for_a_number =
+        VerifyExpansion 0 [{power = Power(0); digit = Digit(0)}]
+        VerifyExpansion 1 [{power = Power(0); digit = Digit(1)}]
+        VerifyExpansion 5 [{power = Power(0); digit = Digit(5)}]
+        VerifyExpansion 15 [{power = Power(1); digit = Digit(1)};
+                            {power = Power(0); digit = Digit(5)}]
+        VerifyExpansion 203 [{power = Power(2); digit = Digit(2)};
+                             {power = Power(0); digit = Digit(3)}]
+        VerifyExpansion 2499 [
+                             {power = Power(3); digit = Digit(2)};
+                             {power = Power(2); digit = Digit(4)};
+                             {power = Power(1); digit = Digit(9)};
+                             {power = Power(0); digit = Digit(9)}]
+    
     let ReturnsTheRomanDigit(arabic, roman) = 
-        test <@ arabic |> convertToRoman2 = roman @>
+        test <@ arabic |> convertToRoman = roman @>
 
     [<Test>]
     let Verify() =
