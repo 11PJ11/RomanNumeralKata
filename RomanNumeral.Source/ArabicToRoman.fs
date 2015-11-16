@@ -36,7 +36,12 @@
         go number biggest_power []
 
 
-
+    let getSymbolsFor power =
+        match power with
+        | 3 -> ("M" ,"MMMMM")
+        | 2 -> ("C" ,"D")
+        | 1 -> ("X" ,"L")
+        | _ -> ("I", "V")
 
     let convertToRoman arabic =
         ""

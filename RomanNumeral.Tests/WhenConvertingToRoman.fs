@@ -27,7 +27,7 @@
          test <@ expand number = expansion @>
     
     [<Test>]
-    let It_should_return_the_expanded_form_for_a_number =
+    let ReturnsTheExpandedFormForANumber () =
         VerifyExpansion 0 [{power = Power(0); digit = Digit(0)}]
         VerifyExpansion 1 [{power = Power(0); digit = Digit(1)}]
         VerifyExpansion 5 [{power = Power(0); digit = Digit(5)}]
@@ -41,6 +41,14 @@
                              {power = Power(1); digit = Digit(9)};
                              {power = Power(0); digit = Digit(9)}]
     
+    [<TestCase(0, "I", "V")>]
+    [<TestCase(1, "X", "L")>]
+    [<TestCase(2, "C", "D")>]
+    [<TestCase(3, "M", "MMMMM")>]
+    let ReturnsTheSymbolsForAPowerOfTen (power, one, five) =
+        test <@ getSymbolsFor power = (one, five) @>
+
+
     let ReturnsTheRomanDigit(arabic, roman) = 
         test <@ arabic |> convertToRoman = roman @>
 
